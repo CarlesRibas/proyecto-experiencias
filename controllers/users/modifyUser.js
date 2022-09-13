@@ -11,17 +11,17 @@ const modifyUser = async (req, res, next) => {
 
         const { name, email, password } = req.body;
 
-        if (!(name, email, password)) {
+        if (!(name || email || password)) {
             throw generateError('Si no vas a hacer nada pa que tocas', 400);
         }
 
         const [user] = await connection.query(
-            `select name, email, password from user where id = ?`,
+            `select name, email, password from users where id = ?`,
             [idUser]
         );
 
         await connection.query(
-            `update user set name = ?, email = ?, password = ?`,
+            `update users set name = ?, email = ?, password = ?`,
             [
                 name || user[0].name,
                 email || user[0].email,

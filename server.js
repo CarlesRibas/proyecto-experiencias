@@ -29,7 +29,7 @@ app.post('/register', newUser);
 app.post('/login', loginUser);
 
 // Modificar name, email y password del usuario
-app.put('/users/idUser', isAuth, canEditUser, modifyUser);
+app.put('/users/:idUser', isAuth, canEditUser, modifyUser);
 
 //devuelve info del user
 app.get('/users/:idUser', getUser);
