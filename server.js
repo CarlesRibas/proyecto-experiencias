@@ -15,6 +15,7 @@ const canEditExperience = require('./middlewares/canEditExperience');
 const newUser = require('./controllers/users/newUser');
 const loginUser = require('./controllers/users/loginUser');
 const modifyUser = require('./controllers/users/modifyUser');
+const getUser = require('./controllers/users/getUser');
 
 //##### CONTROLADORES EXPERIENCIA #####
 const newExperience = require('./controllers/experiences/newExperience');
@@ -31,7 +32,7 @@ app.post('/login', loginUser);
 app.put('/users/idUser', isAuth, canEditUser, modifyUser);
 
 //devuelve info del user
-
+app.get('/users/:idUser', getUser);
 //##### ENDPOINTS RECOMENDACIONES #####
 
 //lista de las recomendaciones
