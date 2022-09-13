@@ -1,7 +1,7 @@
 const getDB = require('../../db/getDB');
 const { generateError } = require('../../helpers');
 
-const modifyUser = async (req, res, next) => {
+const editUser = async (req, res, next) => {
     let connection;
 
     try {
@@ -9,26 +9,22 @@ const modifyUser = async (req, res, next) => {
 
         const { idUser } = req.params;
 
-        const { name, email, password } = req.body;
+        const { name, email } = req.body;
 
-        if (!(name || email || password)) {
+        if (!(name || email)) {
             throw generateError('Si no vas a hacer nada pa que tocas', 400);
         }
 
         const [user] = await connection.query(
-            `select name, email, password from users where id = ?`,
+            `select name, email from users where id = ?`,
             [idUser]
         );
 
-        await connection.query(
-            `update users set name = ?, email = ?, password = ?`,
-            [
-                name || user[0].name,
-                email || user[0].email,
-                password || user[0].password,
-                idUser,
-            ]
-        );
+        await connection.query(`update users set name = ?, email = ?`, [
+            name || user[0].name,
+            email || user[0].email,
+            idUser,
+        ]);
 
         res.send({
             status: 'Ok',
@@ -41,4 +37,4 @@ const modifyUser = async (req, res, next) => {
     }
 };
 
-module.exports = modifyUser;
+module.exports = editUser;
