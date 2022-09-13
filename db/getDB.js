@@ -21,4 +21,4 @@ const getDB = async () => {
     }
 };
 
-module.exports = { getDB,};
+module.exports = getDB;
