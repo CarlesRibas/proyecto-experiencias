@@ -11,6 +11,7 @@ const isAuth = require('./middlewares/isAuth');
 
 //##### CONTROLADORES USUARIO #####
 const newUser = require('./controllers/users/newUser');
+const loginUser = require('./controllers/users/loginUser');
 
 //##### CONTROLADORES EXPERIENCIA #####
 const newExperience = require('./controllers/experiences/newExperience');
@@ -21,6 +22,7 @@ const newExperience = require('./controllers/experiences/newExperience');
 app.post('/register', newUser);
 
 //login user
+app.post('/login', loginUser);
 
 //devuelve info del user
 
