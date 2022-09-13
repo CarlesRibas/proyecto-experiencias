@@ -1,7 +1,5 @@
 const Joi = require('joi');
 
-// Joi nos va a servir para hacer un filtrado de los datos obtenidos en el req.body
-
 const newExperienceSchema = Joi.object().keys({
     title: Joi.string()
         .required()
