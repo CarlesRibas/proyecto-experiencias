@@ -1,6 +1,10 @@
 const getDB = require('../../db/getDB');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+<<<<<<< HEAD
+=======
+const getDB = require('../../db/getDB');
+>>>>>>> 2cf1bf6daf0d6deb04db10cffb889b4d6e4f0946
 const { generateError } = require('../../helpers');
 require('dotenv').config();
 
@@ -8,6 +12,10 @@ const loginUser = async (req, res, next) => {
     let connection;
 
     try {
+<<<<<<< HEAD
+=======
+        // establecemos una conexion a la base de datos
+>>>>>>> 2cf1bf6daf0d6deb04db10cffb889b4d6e4f0946
         connection = await getDB();
 
         const { email, password } = req.body;
