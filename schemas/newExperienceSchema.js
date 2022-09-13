@@ -1,0 +1,53 @@
+const Joi = require('joi');
+
+// Joi nos va a servir para hacer un filtrado de los datos obtenidos en el req.body
+
+const newExperienceSchema = Joi.object().keys({
+    title: Joi.string()
+        .required()
+        .min(3)
+        .max(30)
+        .regex(/[A-Za-z0-9]/)
+        .error((errors) => {
+            if (
+                errors[0].code === 'any.required' ||
+                errors[0].code === 'string.empty'
+            ) {
+                return new Error('El título es un campo obligatorio.');
+            }
+
+            return new Error(
+                'El nombre de la experiencia debe tener entre 3 y 30 caracteres'
+            );
+        }),
+
+    entry: Joi.string()
+        .required()
+        .min(10)
+        .max(100)
+        .regex(/[A-Za-z0-9]/)
+        .error((errors) => {
+            if (
+                errors[0].code === 'any.required' ||
+                errors[0].code === 'string.empty'
+            ) {
+                return new Error('La entradilla es un campo obligatorio.');
+            }
+
+            return new Error(
+                'La entradilla de la experiencia debe tener entre 10 y 100 caracteres'
+            );
+        }),
+
+    text: Joi.string()
+        .min(50)
+        .max(500)
+        .regex(/[A-Za-z0-9]/)
+        .error((_) => {
+            return new Error(
+                'La descripcion debe tener entre 50 y 500 caracteres'
+            );
+        }),
+});
+
+module.exports = newExperienceSchema;
