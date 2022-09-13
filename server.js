@@ -62,5 +62,5 @@ app.use((error, req, res, next) => {
 });
 
 app.listen(3000, () => {
-    console.log('Server listening at: localhost://3000 AHORA LO BORRAS');
+    console.log('Server listening at: localhost://3000');
 });
