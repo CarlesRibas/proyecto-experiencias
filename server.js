@@ -3,8 +3,6 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 
-
-
 const app = express();
 
 app.use(express.json());
@@ -18,7 +16,6 @@ app.use(morgan('dev'));
 
 //devuelve info del user
 
-
 //##### ENDPOINTS RECOMENDACIONES #####
 
 //lista de las recomendaciones
@@ -28,7 +25,6 @@ app.use(morgan('dev'));
 //devuelve una recomendacion
 
 //borrar recomendacion
-
 
 // Middlewares notFound y error
 app.use((req, res) => {
