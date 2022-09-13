@@ -8,10 +8,13 @@ app.use(morgan('dev'));
 
 //##### MIDDLEWARES #####
 const isAuth = require('./middlewares/isAuth');
+const canEditUser = require('./middlewares/canEditUser');
+const canEditExperience = require('./middlewares/canEditExperience');
 
 //##### CONTROLADORES USUARIO #####
 const newUser = require('./controllers/users/newUser');
 const loginUser = require('./controllers/users/loginUser');
+const modifyUser = require('./controllers/users/modifyUser');
 
 //##### CONTROLADORES EXPERIENCIA #####
 const newExperience = require('./controllers/experiences/newExperience');
@@ -23,6 +26,9 @@ app.post('/register', newUser);
 
 //login user
 app.post('/login', loginUser);
+
+// Modificar name, email y password del usuario
+app.put('/users/idUser', isAuth, canEditUser, modifyUser);
 
 //devuelve info del user
 
