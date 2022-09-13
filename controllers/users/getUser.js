@@ -22,9 +22,19 @@ const getUser = async (req, res, next) => {
             `SELECT * FROM recomendaciones WHERE id = ?`,
             [idUser]
         );
+
+        for (let i = 0; i < userRecomendaciones.length; i++) {
+            const [experience] = await connection.query(
+                `SELECT tittle FROM recomendaciones WHERE idUser = ?`,
+                [userRecomendaciones[i].id]
+            );
+
+            userRecomendaciones[i].experience = experience;
+        }
+
         res.send({
             status: 'Ok',
-            data: { ...user },
+            data: { ...user, userRecomendaciones },
         });
     } catch (error) {
         next(error);
