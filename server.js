@@ -12,6 +12,7 @@ const isAuth = require('./middlewares/isAuth');
 //##### CONTROLADORES USUARIO #####
 const newUser = require('./controllers/users/newUser');
 const loginUser = require('./controllers/users/loginUser');
+const getUser = require('./controllers/users/getUser');
 
 //##### CONTROLADORES EXPERIENCIA #####
 const newExperience = require('./controllers/experiences/newExperience');
@@ -25,7 +26,7 @@ app.post('/register', newUser);
 app.post('/login', loginUser);
 
 //devuelve info del user
-
+app.get('/users/:idUser', getUser);
 //##### ENDPOINTS RECOMENDACIONES #####
 
 //lista de las recomendaciones
