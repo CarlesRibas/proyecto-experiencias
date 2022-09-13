@@ -1,6 +1,6 @@
-const getDB = require('../../db/getDB');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { getDB } = require('../../db/getDB');
 const { generateError } = require('../../helpers');
 require('dotenv').config();
 
@@ -9,7 +9,7 @@ const loginUser = async (req, res, next) => {
 
     try {
         // establecemos una conexion a la base de datos
-        connection = await getDB();
+        connection = await getDB;
 
         // Obtener los email y password del body
         const { email, password } = req.body;
@@ -61,7 +61,7 @@ const loginUser = async (req, res, next) => {
     } catch (error) {
         next(error);
     } finally {
-        if (connection) connection.release();
+        if(connection)connection.release();
     }
 };
 
