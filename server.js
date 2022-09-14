@@ -14,8 +14,10 @@ const canEditExperience = require('./middlewares/canEditExperience');
 //##### CONTROLADORES USUARIO #####
 const newUser = require('./controllers/users/newUser');
 const loginUser = require('./controllers/users/loginUser');
-const modifyUser = require('./controllers/users/modifyUser');
 const getUser = require('./controllers/users/getUser');
+const editUser = require('./controllers/users/editUser');
+const editUserPassword = require('./controllers/users/editUserPassword');
+const deleteUser = require('./controllers/users/deleteUser');
 
 //##### CONTROLADORES EXPERIENCIA #####
 const newExperience = require('./controllers/experiences/newExperience');
@@ -28,11 +30,17 @@ app.post('/register', newUser);
 //login user
 app.post('/login', loginUser);
 
-// Modificar name, email y password del usuario
-app.put('/users/:idUser', isAuth, canEditUser, modifyUser);
+// Editar name, email y password del usuario
+app.put('/users/:idUser', isAuth, canEditUser, editUser);
+
+// Editar la contraseña del usuario
+app.put('/users/:idUser/password', isAuth, canEditUser, editUserPassword);
 
 //devuelve info del user
 app.get('/users/:idUser', getUser);
+
+// Eliminar al usuario
+app.delete('/users/:idUser', isAuth, canEditUser, deleteUser);
 //##### ENDPOINTS RECOMENDACIONES #####
 
 //lista de las recomendaciones

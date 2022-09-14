@@ -12,13 +12,13 @@ const canEditExperience = async (req, res, next) => {
         const idReqUser = req.userAuth.id;
 
         const [user] = await connection.query(
-            `select * from experience where id = ? and idUser = ?`,
+            `select * from recomendaciones where id = ? and users_id = ?`,
             [idExperience, idReqUser]
         );
 
-        if (user.lenght < 1) {
+        if (user.length < 1) {
             throw generateError(
-                'No eres el propietario del producto a editar',
+                'No eres el propietario de la experiencia a editar',
                 401
             );
         }
